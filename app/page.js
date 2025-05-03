@@ -41,7 +41,7 @@ export default function Home() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="https://res.cloudinary.com/dmllgn0t7/image/upload/q_auto/v1746230284/hero-01_d0vocj.png"
+          src="https://res.cloudinary.com/dmllgn0t7/image/upload/v1746230284/hero-01_d0vocj.png"
           alt="Black-owned businesses"
           fill
           className="object-cover opacity-70"
