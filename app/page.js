@@ -1,11 +1,13 @@
 "use client"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Search, MapPin, Menu } from "lucide-react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 
 export default function Home() {
-  // Smoother animation variants
+  const [imageLoaded, setImageLoaded] = useState(false)
+
   const container = {
     hidden: { opacity: 0 },
     visible: {
@@ -36,6 +38,9 @@ export default function Home() {
     }
   }
 
+  // Don't render anything until the image has loaded
+  if (!imageLoaded) return null
+
   return (
     <main className="relative h-screen w-full bg-black text-white overflow-hidden">
       {/* Background Image */}
@@ -46,6 +51,7 @@ export default function Home() {
           fill
           className="object-cover opacity-70"
           priority
+          onLoad={() => setImageLoaded(true)}
         />
         <div className="absolute inset-0 bg-black/50" />
       </div>
@@ -63,7 +69,7 @@ export default function Home() {
       {/* Content */}
       <section className="relative z-10 flex h-[calc(100%-80px)] flex-col items-center justify-center px-6 text-center">
         <div className="max-w-md">
-          {/* App Name - Smoother Animation */}
+          {/* App Name */}
           <motion.div
             className="mb-6 text-5xl font-bold tracking-tight"
             variants={container}
@@ -85,10 +91,8 @@ export default function Home() {
             ))}
           </motion.div>
 
-          {/* Rest of content with staggered entrance */}
-          <div
-           
-          >
+          {/* Tagline and Search */}
+          <div>
             <h1 className="mb-4 text-4xl font-bold">
               Discover <span className="text-amber-400">Black-Owned</span> Businesses
             </h1>
@@ -96,7 +100,6 @@ export default function Home() {
               Support your community by finding local Black-owned businesses.
             </p>
 
-            {/* Location Search */}
             <div className="relative mb-6 w-full backdrop-blur-md">
               <div className="flex h-14 items-center rounded-full bg-white/10 px-4 ">
                 <MapPin className="mr-2 text-amber-400" />
