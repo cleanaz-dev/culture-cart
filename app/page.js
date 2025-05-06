@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { businesses } from "@/lib/constants/businesses";
 import { HorizontalCategoryScroll} from "@/components/landing-page/AutoScrollCategories";
+import { lobster } from "./fonts";
 
 
 
@@ -80,7 +81,7 @@ export default function page() {
         <div className="max-w-md">
           {/* App Name - Smoother Animation */}
           <motion.div
-            className="mb-6 text-5xl font-bold tracking-tight"
+            className={`mb-6 text-7xl font-bold tracking-tight ${lobster.className}`}
             variants={container}
             initial="hidden"
             animate="visible"
