@@ -1,10 +1,17 @@
-"use client"
-import { Button } from "@/components/ui/button"
-import { Search, MapPin, Menu } from "lucide-react"
-import Image from "next/image"
-import { motion } from "framer-motion"
+"use client";
+import { Button } from "@/components/ui/button";
+import { Search, MapPin, Menu } from "lucide-react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { businesses } from "@/lib/constants/businesses";
+import { HorizontalCategoryScroll} from "@/components/landing-page/AutoScrollCategories";
 
-export default function Home() {
+
+
+const uniqueCategories = [...new Set(businesses.map(b => b.category))];
+
+
+export default function page() {
   // Smoother animation variants
   const container = {
     hidden: { opacity: 0 },
@@ -12,16 +19,16 @@ export default function Home() {
       opacity: 1,
       transition: {
         staggerChildren: 0.08,
-        delayChildren: 0.3
-      }
-    }
-  }
+        delayChildren: 0.3,
+      },
+    },
+  };
 
   const letter = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       y: 20,
-      rotateX: 90 
+      rotateX: 90,
     },
     visible: {
       opacity: 1,
@@ -31,10 +38,10 @@ export default function Home() {
         type: "spring",
         stiffness: 150,
         damping: 12,
-        mass: 0.5
-      }
-    }
-  }
+        mass: 0.5,
+      },
+    },
+  };
 
   return (
     <main className="relative h-screen w-full bg-black text-white overflow-hidden">
@@ -52,10 +59,18 @@ export default function Home() {
 
       {/* Header */}
       <header className="relative z-10 flex justify-between p-4">
-        <Button variant="ghost" size="icon" className="rounded-full bg-white/10">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="rounded-full bg-white/10"
+        >
           <Menu />
         </Button>
-        <Button variant="ghost" size="icon" className="rounded-full bg-white/10">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="rounded-full bg-white/10"
+        >
           <Search />
         </Button>
       </header>
@@ -75,9 +90,9 @@ export default function Home() {
                 key={i}
                 variants={letter}
                 className="inline-block origin-bottom"
-                style={{ 
-                  color: i >= 7 ? '#f59e0b' : 'white',
-                  textShadow: '0 2px 8px rgba(0,0,0,0.3)'
+                style={{
+                  color: i >= 7 ? "#f59e0b" : "white",
+                  textShadow: "0 2px 8px rgba(0,0,0,0.3)",
                 }}
               >
                 {char === " " ? "\u00A0" : char}
@@ -86,19 +101,18 @@ export default function Home() {
           </motion.div>
 
           {/* Rest of content with staggered entrance */}
-          <div
-           
-          >
+          <div>
             <h1 className="mb-4 text-4xl font-bold">
-              Discover <span className="text-amber-400">Black-Owned</span> Businesses
+              Discover <span className="text-amber-400">Black-Owned</span>{" "}
+              Businesses
             </h1>
             <p className="mb-8 text-gray-200">
               Support your community by finding local Black-owned businesses.
             </p>
 
             {/* Location Search */}
-            <div className="relative mb-6 w-full backdrop-blur-md">
-              <div className="flex h-14 items-center rounded-full bg-white/10 px-4 ">
+            <div className="relative w-full">
+              <div className="flex h-14 items-center rounded-full bg-white/10 px-4 backdrop-blur-md">
                 <MapPin className="mr-2 text-amber-400" />
                 <input
                   type="text"
@@ -107,9 +121,18 @@ export default function Home() {
                 />
               </div>
             </div>
+
+          <div>
+          
           </div>
+          </div>
+        
+        </div>
+        <div className="mt-20 w-[80%]">
+        <HorizontalCategoryScroll categories={uniqueCategories} />
         </div>
       </section>
+     
     </main>
-  )
+  );
 }

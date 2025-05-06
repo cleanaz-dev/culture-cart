@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Erica_One } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -11,6 +11,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const ericaOne = Erica_One({
+  variable: "--font-erica-one",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  preload: true,
+  autoReplace: true,
+});
+
 export const metadata = {
   title: "Culture Cart App",
   description: "Find and support Black-owned businesses in your area with Culture Cart.",
@@ -20,7 +29,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${ericaOne.variable} ${geistMono.variable} antialiased`}
       >
         {children}
       </body>
