@@ -78,7 +78,7 @@ function BusinessTypeCard({ type, icon, slug }) {
         <motion.div
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.97 }}
-          className="flex-shrink-0 size-30 md:size-40 bg-white/10 backdrop-blur-lg rounded-full flex flex-col items-center justify-center text-white text-center px-4 mx-2 transition-all border border-white/5"
+          className="flex-shrink-0 size-30 md:size-40 bg-white/10 backdrop-blur-lg rounded-full flex flex-col items-center justify-center text-white text-center px-4 mx-2 transition-all "
         >
           <div className="flex flex-col items-center justify-center">
             <span className="text-4xl mb-3">{icon}</span>

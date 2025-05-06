@@ -13,15 +13,23 @@ export default function CategoryPage({ categoryName, filtered }) {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
+        staggerChildren: 0.15, // Slightly increased stagger for smoother sequencing
+        delayChildren: 0.3, // Adjusted delay for better pacing
+        ease: "easeOut", // Smooth easing for the container
       }
     }
   };
 
   const item = {
-    hidden: { y: 20, opacity: 0 },
-    show: { y: 0, opacity: 1 }
+    hidden: { y: 30, opacity: 0 }, // Increased y offset for more pronounced effect
+    show: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6, // Explicit duration for smoother motion
+        ease: "easeOut", // Smooth easing for individual items
+      }
+    }
   };
 
   return (
@@ -58,7 +66,7 @@ export default function CategoryPage({ categoryName, filtered }) {
 
       {/* Content */}
       <motion.section 
-        className="relative z-10 h-[calc(100%-80px)] flex flex-col items-center justify-start pt-12 px-6"
+        className="relative z-10 h-[calc(100%-80px)] flex flex-col items-center justify-start px-6"
         variants={container}
         initial="hidden"
         animate="show"
@@ -81,7 +89,6 @@ export default function CategoryPage({ categoryName, filtered }) {
               key={biz.id}
               className="group relative bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-amber-400/30 transition-all"
               variants={item}
-          
             >
               {/* Business Image */}
               <div className="relative h-48 w-full overflow-hidden">
@@ -89,7 +96,7 @@ export default function CategoryPage({ categoryName, filtered }) {
                   src={biz.images.main}
                   alt={biz.name}
                   fill
-                  className="object-cover  transition-transform"
+                  className="object-cover transition-transform"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
               </div>
@@ -104,7 +111,6 @@ export default function CategoryPage({ categoryName, filtered }) {
                       {biz.address}
                     </p>
                   </div>
-                
                 </div>
 
                 <p className="mt-3 text-gray-300 text-sm line-clamp-2">{biz.description}</p>
@@ -116,7 +122,7 @@ export default function CategoryPage({ categoryName, filtered }) {
                   </div>
                   <Button 
                     variant="ghost"
-                    className="px-3 py-1.5 text-sm bg-amber-400/10 hover:bg-amber-400/20 text-amber-400"
+                    className="px-3 py-1.5 text-sm bg-amber-400/10 hover:bg-amber-400/20 text-amber-400 cursor-pointer"
                   >
                     View
                   </Button>
