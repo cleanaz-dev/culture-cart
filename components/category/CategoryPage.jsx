@@ -3,31 +3,32 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { FaFistRaised } from "react-icons/fa";
-import { FiMapPin, FiClock } from "react-icons/fi";
+import { FiMapPin } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
 import { Menu, Search } from "lucide-react";
 
 export default function CategoryPage({ categoryName, filtered }) {
   const container = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0, y: 50 },
     show: {
       opacity: 1,
+      y: 0,
       transition: {
-        staggerChildren: 0.15, // Slightly increased stagger for smoother sequencing
-        delayChildren: 0.3, // Adjusted delay for better pacing
-        ease: "easeOut", // Smooth easing for the container
+        duration: 0.8,
+        ease: "easeOut",
+        delay: 0.2, // Slight delay to allow image loading
       }
     }
   };
 
-  const item = {
-    hidden: { y: 30, opacity: 0 }, // Increased y offset for more pronounced effect
+  const title = {
+    hidden: { opacity: 0, y: 20 },
     show: {
-      y: 0,
       opacity: 1,
+      y: 0,
       transition: {
-        duration: 0.6, // Explicit duration for smoother motion
-        ease: "easeOut", // Smooth easing for individual items
+        duration: 0.6,
+        ease: "easeOut",
       }
     }
   };
@@ -74,62 +75,68 @@ export default function CategoryPage({ categoryName, filtered }) {
         {/* Category Title */}
         <motion.h1
           className="text-4xl md:text-5xl font-bold mb-6 text-center"
-          variants={item}
+          variants={title}
         >
           <span className="text-amber-400">{categoryName}</span> Businesses
         </motion.h1>
 
         {/* Business Grid */}
         <motion.div 
-          className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4"
+          className="w-full max-w-7xl p-4"
           variants={container}
+          initial="hidden"
+          animate="show"
         >
-          {filtered.map((biz) => (
-            <motion.article
-              key={biz.id}
-              className="group relative bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-amber-400/30 transition-all"
-              variants={item}
-            >
-              {/* Business Image */}
-              <div className="relative h-48 w-full overflow-hidden">
-                <Image
-                  src={biz.images.main}
-                  alt={biz.name}
-                  fill
-                  className="object-cover transition-transform"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-              </div>
-
-              {/* Business Info */}
-              <div className="p-4">
-                <div className="flex items-start justify-between gap-2">
-                  <div>
-                    <h2 className="text-xl font-semibold text-white mb-1">{biz.name}</h2>
-                    <p className="text-gray-300 flex items-center gap-1.5 text-sm">
-                      <FiMapPin className="text-amber-400" />
-                      {biz.address}
-                    </p>
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filtered.map((biz) => (
+              <article
+                key={biz.id}
+                className="group relative bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden  hover:border-amber-400/30 transition-all will-change-transform"
+                style={{ transform: 'translateZ(0)' }}
+              >
+                {/* Business Image */}
+                <div className="relative h-48 w-full overflow-hidden">
+                  <Image
+                    src={biz.images.main}
+                    alt={biz.name}
+                    fill
+                    className="object-cover transition-transform"
+                    priority // Prioritize loading for business images
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" // Optimize image sizes for responsive grid
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 </div>
 
-                <p className="mt-3 text-gray-300 text-sm line-clamp-2">{biz.description}</p>
-                
-                <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
-                  <div className="flex items-center gap-1 text-amber-400">
-                    <FaFistRaised className="w-4 h-4" />
-                    <span className="text-sm">4.8 (24)</span>
+                {/* Business Info */}
+                <div className="p-4">
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <h2 className="text-xl font-semibold text-white mb-1">{biz.name}</h2>
+                      <p className="text-gray-300 flex items-center gap-1.5 text-sm">
+                        <FiMapPin className="text-amber-400" />
+                        {biz.address}
+                      </p>
+                    </div>
                   </div>
-                  <Button 
-                    variant="ghost"
-                    className="px-3 py-1.5 text-sm bg-amber-400/10 hover:bg-amber-400/20 text-amber-400 cursor-pointer"
-                  >
-                    View
-                  </Button>
+
+                  <p className="mt-3 text-gray-300 text-sm line-clamp-2">{biz.description}</p>
+                  
+                  <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+                    <div className="flex items-center gap-1 text-amber-400">
+                      <FaFistRaised className="w-4 h-4" />
+                      <span className="text-sm">4.8 (24)</span>
+                    </div>
+                    <Button 
+                      variant="ghost"
+                      className="px-3 py-1.5 text-sm bg-amber-400/10 hover:bg-amber-400/20 text-amber-400"
+                    >
+                      View
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </motion.article>
-          ))}
+              </article>
+            ))}
+          </div>
         </motion.div>
       </motion.section>
     </main>
