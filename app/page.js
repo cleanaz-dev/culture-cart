@@ -128,7 +128,7 @@ export default function page() {
           </div>
         
         </div>
-        <div className="mt-20 w-[80%]">
+        <div className="md:mt-20 w-[80%]">
         <HorizontalCategoryScroll categories={uniqueCategories} />
         </div>
       </section>
