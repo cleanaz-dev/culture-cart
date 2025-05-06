@@ -6,6 +6,7 @@ import { FaFistRaised } from "react-icons/fa";
 import { FiMapPin, FiClock } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
 import { Menu, Search } from "lucide-react";
+import { lobster } from "@/app/fonts";
 
 export default function CategoryPage({ categoryName, filtered }) {
   const container = {
@@ -84,7 +85,7 @@ export default function CategoryPage({ categoryName, filtered }) {
       >
         {/* Category Title */}
         <motion.h1
-          className="text-4xl md:text-5xl font-bold mb-6 text-center"
+          className={`text-4xl md:text-6xl font-bold mb-6 text-center ${lobster.className}`}
           variants={item}
         >
           <span className="text-amber-400">{categoryName}</span> Businesses
@@ -98,7 +99,7 @@ export default function CategoryPage({ categoryName, filtered }) {
           {filtered.map((biz) => (
             <motion.article
               key={biz.id}
-              className="group relative bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden hover:border-amber-400/30 "
+              className="group relative bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden hover:border-amber-400/30"
               variants={card}
             >
               {/* Business Image */}
