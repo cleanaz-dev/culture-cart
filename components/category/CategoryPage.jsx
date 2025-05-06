@@ -38,7 +38,7 @@ export default function CategoryPage({ categoryName, filtered }) {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="https://res.cloudinary.com/dmllgn0t7/image/upload/v1746230284/hero-01_d0vocj.png"
+          src="https://res.cloudinary.com/dmllgn0t7/image/upload/q_auto/v1746230284/hero-01_d0vocj.png"
           alt="Background texture"
           fill
           className="object-cover opacity-70"
