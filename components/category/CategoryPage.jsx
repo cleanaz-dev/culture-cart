@@ -33,13 +33,12 @@ export default function CategoryPage({ categoryName, filtered }) {
   };
 
   const card = {
-    hidden: { y: 20, opacity: 0},
+    hidden: { opacity: 0},
     show: {
-      y: 0,
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: "easeIn"
+ 
       }
     }
   }
@@ -49,7 +48,7 @@ export default function CategoryPage({ categoryName, filtered }) {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="https://res.cloudinary.com/dmllgn0t7/image/upload/f_auto/v1746230284/hero-01_d0vocj.png"
+          src="https://res.cloudinary.com/dmllgn0t7/image/upload//v1746230284/hero-01_d0vocj.png"
           alt="Background texture"
           fill
           className="object-cover opacity-70"
@@ -99,7 +98,7 @@ export default function CategoryPage({ categoryName, filtered }) {
           {filtered.map((biz) => (
             <motion.article
               key={biz.id}
-              className="group relative bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden hover:border-amber-400/30 transition-all"
+              className="group relative bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden hover:border-amber-400/30 "
               variants={card}
             >
               {/* Business Image */}
@@ -108,7 +107,7 @@ export default function CategoryPage({ categoryName, filtered }) {
                   src={biz.images.main}
                   alt={biz.name}
                   fill
-                  className="object-cover transition-transform"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
               </div>

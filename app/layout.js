@@ -32,6 +32,7 @@ export default function RootLayout({ children }) {
         className={`${ericaOne.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+       
       </body>
     </html>
   );
