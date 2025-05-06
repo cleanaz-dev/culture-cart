@@ -25,7 +25,7 @@ export default function CategoryPage({ categoryName, filtered }) {
   };
 
   return (
-    <main className="relative h-screen w-full bg-black text-white overflow-hidden">
+    <main className="relative min-h-screen w-full bg-black text-white overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
