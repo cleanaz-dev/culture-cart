@@ -24,12 +24,12 @@ export function HorizontalCategoryScroll({ categories }) {
     "Retail Electronics": <Briefcase className="size-6 md:size-8" />,
     "Real Estate": <Home className="size-6 md:size-8" />,
     "Home Services": <Hammer className="size-6 md:size-8" />,
-    Café: <Coffee className="size-6 md:size-8" />,
+    "Café": <Coffee className="size-6 md:size-8" />,
     "Travel Agency": <Plane className="size-6 md:size-8" />,
     "IT Services": <Briefcase className="size-6 md:size-8" />,
     "Spa & Wellness": <Dumbbell className="size-6 md:size-8" />,
-    Fashion: <Shirt className="size-6 md:size-8" />,
-    Fitness: <Dumbbell className="size-6 md:size-8" />,
+    "Fashion": <Shirt className="size-6 md:size-8" />,
+    "Fitness": <Dumbbell className="size-6 md:size-8" />,
   };
 
   useEffect(() => {
@@ -78,10 +78,10 @@ function BusinessTypeCard({ type, icon, slug }) {
         <motion.div
       
           whileTap={{ scale: 0.97 }}
-          className="flex-shrink-0 size-30 md:size-40 bg-white/10 backdrop-blur-lg rounded-full flex flex-col items-center justify-center text-white text-center px-4 mx-2 hover:scale-105 transition-all duration-300 "
+          className="flex-shrink-0 py-2 bg-white/10 backdrop-blur-lg rounded-full flex flex-col items-center justify-center text-white text-center px-4 mx-2 hover:scale-105 transition-all duration-300 "
         >
-          <div className="flex flex-col items-center justify-center">
-            <span className="text-4xl mb-3">{icon}</span>
+          <div className="flex gap-2 items-center justify-center">
+            {icon}
             <p className="text-sm font-medium">{type}</p>
           </div>
         </motion.div>
